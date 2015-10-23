@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean id="userService" class="by.epam.training.service.UserServiceImpl">
+        <property name="userDao" ref="userDaoMap"/>
+    </bean>
+
+    <bean id="userDaoMap" class="by.epam.training.dao.UserDaoMapImpl">
+        <property name="dataMapService" ref="dataMapService"/>
+    </bean>
+
+    <bean id="dataMapService" class="by.epam.training.service.DataMapServiceImpl">
+        <property name="maxId" value="999"/>
+    </bean>
+
+</beans>

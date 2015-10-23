@@ -1,4 +1,4 @@
-package by.epam.training.service;
+package by.epam.training.dao;
 
 import by.epam.training.domain.Ticket;
 import by.epam.training.domain.User;
@@ -6,13 +6,13 @@ import by.epam.training.domain.User;
 import java.util.List;
 
 /**
- * Created by Vitali on 20.10.2015.
+ * Created by Vitali Ihnatsenka on 23.10.2015.
  */
-public interface UserService {
+public interface UserDao {
     void register(User user);
     void remove(int id);
-    User getByID(int id);
+    User getById(int id);
     User getUserByEmail(String email);
     List<User> getUsersByName(String name);
-    List<Ticket>  getBookedTickets(int userID);
+    List<Ticket> getBookedTickets(int userId);
 }
