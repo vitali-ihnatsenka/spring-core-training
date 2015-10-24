@@ -13,8 +13,16 @@
         <property name="dataMapService" ref="dataMapService"/>
     </bean>
 
+    <bean id="eventService" class="by.epam.training.service.EventServiceImpl">
+        <property name="eventDao" ref="eventDaoMap"/>
+    </bean>
+
+    <bean id="eventDaoMap" class="by.epam.training.dao.EventDaoMapImpl">
+        <property name="dataMapService" ref="dataMapService"/>
+    </bean>
+
     <bean id="dataMapService" class="by.epam.training.service.DataMapServiceImpl">
-        <property name="maxId" value="999"/>
+        <property name="maxId" value="9999"/>
     </bean>
 
 </beans>
