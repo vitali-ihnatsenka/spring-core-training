@@ -15,4 +15,5 @@ public interface UserService {
     User getUserByEmail(String email);
     List<User> getUsersByName(String name);
     List<Ticket>  getBookedTickets(int userID);
+    int getUserId(User user);
 }

@@ -61,6 +61,11 @@ public class UserDaoMapImpl implements UserDao{
         return user.getTickets();
     }
 
+    @Override
+    public int getUserId(User user) {
+        return -1;
+    }
+
     private void checkIllegalUserId(int id){
         if(userMap.get(id) == null){
             throw new IllegalArgumentException("Illegal user id " + id);
