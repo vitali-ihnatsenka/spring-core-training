@@ -1,5 +1,6 @@
 package by.epam.training.service;
 
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
@@ -16,6 +17,21 @@ public class DataMapServiceImpl implements DataMapService {
             return  getUniqueRandomId(idSet);
         }
         return id;
+    }
+
+    @Override
+    public <T> int getObjectId(Map<Integer, T> map, T object) {
+        for(Map.Entry<Integer, T> entry: map.entrySet()){
+            if(entry.getValue().equals(object)){
+                return entry.getKey();
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public <T> void register(Map<Integer, T> map, T object) {
+        map.put(getUniqueRandomId(map.keySet()), object);
     }
 
     public void setMaxId(int maxId) {

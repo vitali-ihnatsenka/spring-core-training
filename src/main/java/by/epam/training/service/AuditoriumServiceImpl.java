@@ -14,7 +14,7 @@ public class AuditoriumServiceImpl implements AuditoriumService {
     }
 
     @Override
-    public int getSeatsnumber() {
+    public int getSeatsNumber() {
         return 0;
     }
 

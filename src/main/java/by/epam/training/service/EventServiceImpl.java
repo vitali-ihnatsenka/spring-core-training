@@ -1,7 +1,9 @@
 package by.epam.training.service;
 
+import by.epam.training.dao.EventDao;
 import by.epam.training.domain.Auditorium;
 import by.epam.training.domain.Event;
+import by.epam.training.domain.EventShow;
 
 import java.util.Date;
 import java.util.List;
@@ -10,39 +12,54 @@ import java.util.List;
  * Created by Vitali on 20.10.2015.
  */
 public class EventServiceImpl implements EventService {
+    private EventDao eventDao;
 
     @Override
     public void create(Event event) {
-
+        eventDao.create(event);
     }
 
     @Override
-    public void remove(long id) {
-
+    public void remove(int id) {
+        eventDao.remove(id);
     }
 
     @Override
     public Event getByName(String name) {
-        return null;
+        return eventDao.getByName(name);
+    }
+
+    @Override
+    public Event getById(int id) {
+        return eventDao.getById(id);
     }
 
     @Override
     public List<Event> getAll() {
-        return null;
+        return eventDao.getAll();
     }
 
     @Override
-    public List<Event> getForDateRange(Date from, Date to) {
-        return null;
+    public List<EventShow> getForDateRange(Date from, Date to) {
+        return eventDao.getForDateRange(from, to);
     }
 
     @Override
-    public List<Event> getNextEvents(Date to) {
-        return null;
+    public List<EventShow> getNextEvents(Date to) {
+        return getForDateRange(new Date(), to);
     }
 
     @Override
-    public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
+    public void assignAuditorium(int eventId, Auditorium auditorium, Date date) {
+        eventDao.assignAuditorium(eventId, auditorium, date);
+    }
 
+    @Override
+    public int getEventId(Event event) {
+        return eventDao.getEventId(event);
+    }
+
+    public void setEventDao(EventDao eventDao) {
+        this.eventDao = eventDao;
     }
 }

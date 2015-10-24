@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface AuditoriumService {
     List<Auditorium> getAuditoriums();
-    int getSeatsnumber();
+    int getSeatsNumber();
     int getVipSeats();
 }

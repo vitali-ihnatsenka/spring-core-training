@@ -34,10 +34,7 @@ public class App {
         System.out.println(userService.getByID(id));
         userService.remove(id);
 
-      //  System.out.println(userService.getByID(id));
-
-
-
+        System.out.println(userService.getByID(id));
 
     }
 

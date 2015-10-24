@@ -18,18 +18,16 @@ public class UserDaoMapImpl implements UserDao{
 
     @Override
     public void register(User user) {
-        userMap.put(dataMapService.getUniqueRandomId(userMap.keySet()), user);
+        dataMapService.register(userMap, user);
     }
 
     @Override
     public void remove(int id) {
-        checkIllegalUserId(id);
         userMap.remove(id);
     }
 
     @Override
     public User getById(int id) {
-        checkIllegalUserId(id);
         return userMap.get(id);
     }
 
@@ -56,25 +54,13 @@ public class UserDaoMapImpl implements UserDao{
 
     @Override
     public List<Ticket> getBookedTickets(int userId) {
-        checkIllegalUserId(userId);
         User  user = userMap.get(userId);
         return user.getTickets();
     }
 
     @Override
     public int getUserId(User user) {
-        for(Map.Entry<Integer, User> entry: userMap.entrySet()){
-            if(entry.getValue().equals(user)){
-                return entry.getKey();
-            }
-        }
-        return -1;
-    }
-
-    private void checkIllegalUserId(int id){
-        if(userMap.get(id) == null){
-            throw new IllegalArgumentException("Illegal user id " + id);
-        }
+        return dataMapService.getObjectId(userMap, user);
     }
 
     public void setDataMapService(DataMapService dataMapService) {
