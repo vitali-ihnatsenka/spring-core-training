@@ -63,6 +63,11 @@ public class UserDaoMapImpl implements UserDao{
 
     @Override
     public int getUserId(User user) {
+        for(Map.Entry<Integer, User> entry: userMap.entrySet()){
+            if(entry.getValue().equals(user)){
+                return entry.getKey();
+            }
+        }
         return -1;
     }
 

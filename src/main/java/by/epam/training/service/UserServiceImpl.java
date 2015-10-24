@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void remove(int id) {
-
+        userDao.remove(id);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int getUserId(User user) {
-        return -1;
+        return userDao.getUserId(user);
     }
 
     public void setUserDao(UserDao userDao) {
