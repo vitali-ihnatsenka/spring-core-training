@@ -1,6 +1,7 @@
 package by.epam.training.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,10 +11,12 @@ public class User {
     private String email;
     private String name;
     private List<Ticket> tickets = new ArrayList<Ticket>();
+    private Date birthday;
 
-    public User(String email, String name) {
+    public User(String email, String name, Date birthday) {
         this.email = email;
         this.name = name;
+        this.birthday = birthday;
     }
 
     public String getEmail() {
@@ -38,6 +41,14 @@ public class User {
 
     public void addTicket(Ticket ticket) {
         this.tickets.add(ticket);
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     @Override
