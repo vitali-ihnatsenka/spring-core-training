@@ -8,18 +8,14 @@ import java.util.List;
  * Created by Vitali on 20.10.2015.
  */
 public class AuditoriumServiceImpl implements AuditoriumService {
+    private List<Auditorium> auditoriums;
+
     @Override
     public List<Auditorium> getAuditoriums() {
-        return null;
+        return auditoriums;
     }
 
-    @Override
-    public int getSeatsNumber() {
-        return 0;
-    }
-
-    @Override
-    public int getVipSeats() {
-        return 0;
+    public void setAuditoriums(List<Auditorium> auditoriums) {
+        this.auditoriums = auditoriums;
     }
 }

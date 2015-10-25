@@ -1,6 +1,8 @@
 package by.epam.training;
 
+import by.epam.training.domain.Auditorium;
 import by.epam.training.domain.User;
+import by.epam.training.service.AuditoriumService;
 import by.epam.training.service.UserService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -35,6 +37,11 @@ public class App {
         userService.remove(id);
 
         System.out.println(userService.getByID(id));
+
+        AuditoriumService auditoriumService = appContext.getBean("auditoriumService", AuditoriumService.class);
+        for(Auditorium auditorium : auditoriumService.getAuditoriums()){
+            System.out.println(auditorium);
+        }
 
     }
 
