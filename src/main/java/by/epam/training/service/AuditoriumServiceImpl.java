@@ -1,5 +1,6 @@
 package by.epam.training.service;
 
+import by.epam.training.dao.AuditoriumDao;
 import by.epam.training.domain.Auditorium;
 
 import java.util.List;
@@ -8,14 +9,14 @@ import java.util.List;
  * Created by Vitali on 20.10.2015.
  */
 public class AuditoriumServiceImpl implements AuditoriumService {
-    private List<Auditorium> auditoriums;
+    private AuditoriumDao auditoriumDao;
 
     @Override
     public List<Auditorium> getAuditoriums() {
-        return auditoriums;
+        return auditoriumDao.getAuditoriums();
     }
 
-    public void setAuditoriums(List<Auditorium> auditoriums) {
-        this.auditoriums = auditoriums;
+    public void setAuditoriumDao(AuditoriumDao auditoriumDao) {
+        this.auditoriumDao = auditoriumDao;
     }
 }
