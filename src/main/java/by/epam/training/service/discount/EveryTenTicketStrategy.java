@@ -11,7 +11,7 @@ public class EveryTenTicketStrategy implements DiscountStrategy{
 
     @Override
     public int getDiscount(User user, EventShow show) {
-        if(user.getTickets().size() == 9){
+        if(user.getTickets().size()%10 == 9){
             return discountValue;
         }
         return 0;
