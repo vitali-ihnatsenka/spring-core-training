@@ -16,11 +16,13 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public void create(Event event) {
+        System.out.println("-------- Create event " + event);
         eventDao.create(event);
     }
 
     @Override
     public void remove(int id) {
+        System.out.println("-------- Remove event " + id);
         eventDao.remove(id);
     }
 
@@ -50,8 +52,9 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public void assignAuditorium(int eventId, Auditorium auditorium, Date date) {
-        eventDao.assignAuditorium(eventId, auditorium, date);
+    public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
+        System.out.println("--------assign EVENT: " + event + " AUDITORIUM: " + auditorium + " DATE: " + date);
+        eventDao.assignAuditorium(event, auditorium, date);
     }
 
     @Override

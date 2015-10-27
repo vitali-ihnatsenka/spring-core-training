@@ -17,6 +17,6 @@ public interface EventDao {
     Event getById(int id);
     List<Event> getAll();
     List<EventShow> getForDateRange(Date from, Date to);
-    void assignAuditorium(int eventId, Auditorium auditorium, Date date);
+    void assignAuditorium(Event event, Auditorium auditorium, Date date);
     int getEventId(Event event);
 }

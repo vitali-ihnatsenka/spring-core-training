@@ -14,6 +14,7 @@
         <property name="locations" >
             <list>
                 <value>classpath:auditoriums.properties</value>
+                <value>classpath:discountValue.properties</value>
             </list>
         </property>
         <property name="ignoreResourceNotFound" value="true"/>
@@ -46,6 +47,16 @@
                 </bean>
             </list>
         </property>
+    </bean>
+
+    <bean id="bookingService" class="by.epam.training.service.BookingServiceImpl">
+        <property name="ticketDao" ref="ticketsDaoMap"/>
+        <property name="discountService" ref="discountService"/>
+        <property name="userDao" ref="userDaoMap"/>
+    </bean>
+
+    <bean id="ticketsDaoMap" class="by.epam.training.dao.TicketDaoMapImpl">
+        <property name="dataMapService" ref="dataMapService"/>
     </bean>
 
     <bean id="userService" class="by.epam.training.service.UserServiceImpl">

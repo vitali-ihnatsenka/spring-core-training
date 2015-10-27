@@ -14,11 +14,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(User user) {
+        System.out.println("-------Register user: " + user + " ----------");
         userDao.register(user);
     }
 
     @Override
     public void remove(int id) {
+        System.out.println("-------Remove  user with id: " + id + " ----------");
         userDao.remove(id);
     }
 

@@ -58,8 +58,8 @@ public class EventDaoMapImpl implements EventDao {
     }
 
     @Override
-    public void assignAuditorium(int eventId, Auditorium auditorium, Date date) {
-        eventShowMap.put(dataMapService.getUniqueRandomId(eventMap.keySet()), new EventShow(getById(eventId), auditorium, date));
+    public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
+        eventShowMap.put(dataMapService.getUniqueRandomId(eventMap.keySet()), new EventShow(event, auditorium, date));
     }
 
     @Override

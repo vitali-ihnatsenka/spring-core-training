@@ -18,7 +18,7 @@ public interface EventService {
     List<Event> getAll();
     List<EventShow> getForDateRange(Date from, Date to);
     List<EventShow> getNextEvents(Date to);
-    void assignAuditorium(int eventId, Auditorium auditorium, Date date);
+    void assignAuditorium(Event event, Auditorium auditorium, Date date);
     int getEventId(Event event);
 
 }
