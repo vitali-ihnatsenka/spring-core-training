@@ -16,4 +16,5 @@ public interface UserDao {
     List<User> getUsersByName(String name);
     List<Ticket> getBookedTickets(int userId);
     int getUserId(User user);
+    void addTicket(User user, Ticket ticket);
 }

@@ -11,8 +11,8 @@ import java.util.*;
  * Created by Vitali on 24.10.2015.
  */
 public class EventDaoMapImpl implements EventDao {
-    private Map<Integer, Event> eventMap;
-    private Map<Integer, EventShow> eventShowMap;
+    private static Map<Integer, Event> eventMap = new HashMap<Integer, Event>();
+    private static Map<Integer, EventShow> eventShowMap = new HashMap<Integer, EventShow>();
     private DataMapService dataMapService;
 
     @Override

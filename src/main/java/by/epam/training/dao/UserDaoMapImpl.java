@@ -63,6 +63,11 @@ public class UserDaoMapImpl implements UserDao{
         return dataMapService.getObjectId(userMap, user);
     }
 
+    @Override
+    public void addTicket(User user, Ticket ticket) {
+        user.addTicket(ticket);
+    }
+
     public void setDataMapService(DataMapService dataMapService) {
         this.dataMapService = dataMapService;
     }

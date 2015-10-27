@@ -39,4 +39,35 @@ public class EventShow {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        EventShow eventShow = (EventShow) o;
+
+        if (auditorium != null ? !auditorium.equals(eventShow.auditorium) : eventShow.auditorium != null) return false;
+        if (date != null ? !date.equals(eventShow.date) : eventShow.date != null) return false;
+        if (event != null ? !event.equals(eventShow.event) : eventShow.event != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = event != null ? event.hashCode() : 0;
+        result = 31 * result + (auditorium != null ? auditorium.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "EventShow{" +
+                "event=" + event +
+                ", auditorium=" + auditorium +
+                ", date=" + date +
+                '}';
+    }
 }

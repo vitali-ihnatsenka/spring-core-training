@@ -27,4 +27,32 @@ public class Ticket {
     public void setSeatNumber(int seatNumber) {
         this.seatNumber = seatNumber;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Ticket ticket = (Ticket) o;
+
+        if (seatNumber != ticket.seatNumber) return false;
+        if (eventShow != null ? !eventShow.equals(ticket.eventShow) : ticket.eventShow != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = eventShow != null ? eventShow.hashCode() : 0;
+        result = 31 * result + seatNumber;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "eventShow=" + eventShow +
+                ", seatNumber=" + seatNumber +
+                '}';
+    }
 }
