@@ -1,9 +1,6 @@
 package by.epam.training;
 
-import by.epam.training.domain.Auditorium;
-import by.epam.training.domain.Event;
-import by.epam.training.domain.Rating;
-import by.epam.training.domain.User;
+import by.epam.training.domain.*;
 import by.epam.training.service.AuditoriumService;
 import by.epam.training.service.BookingService;
 import by.epam.training.service.EventService;
@@ -24,7 +21,7 @@ public class App {
     public static void main(String[] args) throws ParseException {
         ApplicationContext appContext = new ClassPathXmlApplicationContext("spring.xml");
         UserService userService = appContext.getBean("userService", UserService.class);
-        DateFormat df = new SimpleDateFormat("dd/mm/yy");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
         System.out.println("------------------USER SERVICE TEST------------------------------------");
         userService.register(new User("Vitali_Ihnatsenka@epam.com", "Vitali", df.parse("14/07/1989")));
@@ -71,12 +68,12 @@ public class App {
         }
 
         System.out.println("\n------------------ASSIGN EVENTS TO AUDITORIUMS ------------------------------------");
-        eventService.assignAuditorium(eventService.getByName("Terminator"), auditoriumService.getAuditoriums().get(1), df.parse("01/02/05"));
-        eventService.assignAuditorium(eventService.getByName("Terminator"), auditoriumService.getAuditoriums().get(1), df.parse("01/02/05"));
-        eventService.assignAuditorium(eventService.getByName("Terminator"), auditoriumService.getAuditoriums().get(2), df.parse("02/02/05"));
-        eventService.assignAuditorium(eventService.getByName("Chuck Norris"), auditoriumService.getAuditoriums().get(1), df.parse("05/02/05"));
-        eventService.assignAuditorium(eventService.getByName("Chuck Norris"), auditoriumService.getAuditoriums().get(1), df.parse("05/02/05"));
-        eventService.assignAuditorium(eventService.getByName("Snatch"), auditoriumService.getAuditoriums().get(1), df.parse("01/05/05"));
+        eventService.assignAuditorium(eventService.getByName("Terminator"), auditoriumService.getAuditoriums().get(2), df.parse("01/02/2015"));
+        eventService.assignAuditorium(eventService.getByName("Terminator"), auditoriumService.getAuditoriums().get(1), df.parse("01/02/2015"));
+        eventService.assignAuditorium(eventService.getByName("Terminator"), auditoriumService.getAuditoriums().get(2), df.parse("02/02/2015"));
+        eventService.assignAuditorium(eventService.getByName("Chuck Norris"), auditoriumService.getAuditoriums().get(1), df.parse("05/02/2015"));
+        eventService.assignAuditorium(eventService.getByName("Chuck Norris"), auditoriumService.getAuditoriums().get(1), df.parse("05/02/2015"));
+        eventService.assignAuditorium(eventService.getByName("Snatch"), auditoriumService.getAuditoriums().get(1), df.parse("01/05/2015"));
 
 
         System.out.println("\n\n\n------------------AUDITORIUM SERVICE TEST------------------------------------");
@@ -87,6 +84,40 @@ public class App {
 
         System.out.println("\n\n\n------------------BOOKING SERVICE TEST------------------------------------");
         BookingService bookingService = appContext.getBean("bookingService", BookingService.class);
+
+        System.out.println("\n------------------PRINT EVENTS PRICES------------------------------------");
+        List<EventShow> eventShowList = eventService.getForDateRange(df.parse("01/01/2015"), df.parse("01/12/2015"));
+        for (EventShow eventShow: eventShowList){
+            System.out.println("VIP: " + bookingService.getTicketPrice(eventShow, eventShow.getAuditorium().getVipSeats().get(1), vitali));
+            System.out.println("NOVIP: " + bookingService.getTicketPrice(eventShow, 20, vitali));
+        }
+
+        System.out.println("\n------------------BOOKING TICKETS------------------------------------");
+        bookingService.bookTicket(new Ticket(eventShowList.get(1), 1), vitali);
+        bookingService.bookTicket(new Ticket(eventShowList.get(1), 2), vitali);
+        System.out.println("\n------------------PRINT USER'S BOOKED TICKETS------------------------------------");
+        for (Ticket ticket: vitali.getTickets()){
+            System.out.println(ticket);
+        }
+
+        System.out.println("\n------------------PRINT ALL TICKETS FOR EVENT------------------------------------");
+        for (Ticket ticket: bookingService.getTicketsForEvent(eventShowList.get(0))){
+            System.out.println(ticket);
+        }
+
+        System.out.println("\n\n\n------------------DISCOUNT SERVICE TEST------------------------------------");
+        System.out.println("\n------------------CHECK EVERY TEN TICKET DISCOUNT------------------------------------");
+        for (int i = 0; i < 28; i++) {
+            bookingService.bookTicket(new Ticket(eventShowList.get(2), i), vitali);
+            System.out.println(i + " -- " + bookingService.getTicketPrice(eventShowList.get(2),i,vitali));
+        }
+
+        System.out.println("\n------------------CHECK BIRTHDAY DISCOUNT------------------------------------");
+        eventShowList.get(2).setDate(vitali.getBirthday());
+        for (int i = 29; i < 50; i++) {
+            bookingService.bookTicket(new Ticket(eventShowList.get(2), i), vitali);
+            System.out.println(i + " -- " + bookingService.getTicketPrice(eventShowList.get(2),i,vitali));
+        }
 
     }
 
