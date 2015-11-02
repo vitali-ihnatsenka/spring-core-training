@@ -43,17 +43,20 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<EventShow> getForDateRange(Date from, Date to) {
+        // TODO: +0.5% optional method implemented
         return eventDao.getForDateRange(from, to);
     }
 
     @Override
     public List<EventShow> getNextEvents(Date to) {
+        // TODO: +0.5% optional method implemented
         return getForDateRange(new Date(), to);
     }
 
     @Override
     public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
         System.out.println("--------assign EVENT: " + event + " AUDITORIUM: " + auditorium + " DATE: " + date);
+        // FIXME: 1%: Only one auditorium for Event for specific dateTime
         eventDao.assignAuditorium(event, auditorium, date);
     }
 

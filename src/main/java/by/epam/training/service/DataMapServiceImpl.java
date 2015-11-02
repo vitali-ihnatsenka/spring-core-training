@@ -12,6 +12,7 @@ public class DataMapServiceImpl implements DataMapService {
 
     @Override
     public Integer getUniqueRandomId(Set<Integer> idSet) {
+        // FIXME: 0.5%: stack overflow when maxId would reached
         int id = new Random().nextInt(maxId) + 1;
         if(idSet.contains(id)){
             return  getUniqueRandomId(idSet);

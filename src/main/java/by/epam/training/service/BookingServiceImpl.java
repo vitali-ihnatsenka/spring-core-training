@@ -21,6 +21,7 @@ public class BookingServiceImpl implements BookingService {
         int price = eventShow.getEvent().getBasePrice();
         List<Integer> vipSeats = eventShow.getAuditorium().getVipSeats();
         int discount = discountService.getDiscount(user, eventShow);
+        // FIXME: 1%: All prices for high rated movies should be higher (For example, 1.2xBasePrice)
         if(vipSeats.contains(seat)){
             price *= 1.2;
         }
@@ -31,12 +32,14 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public void bookTicket(Ticket ticket, User user) {
         ticketDao.bookTicket(ticket);
+        // FIXME: 1%: user could  be registered or not. If user is registered, then booking information is stored for that user.
         userDao.addTicket(user, ticket);
 
     }
 
     @Override
     public List<Ticket> getTicketsForEvent(EventShow eventShow) {
+        // FIXME: 1%: get all purchased tickets for event for specific date
         List<Ticket> tickets = new ArrayList<Ticket>();
         for (int i = 0; i < eventShow.getAuditorium().getNumberOfSeats() ; i++) {
             tickets.add(new Ticket(eventShow, i));

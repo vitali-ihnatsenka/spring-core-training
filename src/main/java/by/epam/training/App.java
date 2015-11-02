@@ -18,6 +18,8 @@ import java.util.List;
  */
 public class App {
 
+    // TODO: +2%: nice done
+
     public static void main(String[] args) throws ParseException {
         ApplicationContext appContext = new ClassPathXmlApplicationContext("spring.xml");
         UserService userService = appContext.getBean("userService", UserService.class);
