@@ -1,5 +1,6 @@
 package by.epam.training;
 
+import by.epam.training.dao.exception.TicketIsBookedException;
 import by.epam.training.domain.*;
 import by.epam.training.service.AuditoriumService;
 import by.epam.training.service.BookingService;
@@ -96,6 +97,11 @@ public class App {
 
         System.out.println("\n------------------BOOKING TICKETS------------------------------------");
         bookingService.bookTicket(new Ticket(eventShowList.get(1), 1), vitali);
+        try{
+            bookingService.bookTicket(new Ticket(eventShowList.get(1), 1), vitali);
+        }catch (TicketIsBookedException e){
+            System.out.println("Ticket " + e.getTicket() + "is already booked");
+        }
         bookingService.bookTicket(new Ticket(eventShowList.get(1), 2), vitali);
         System.out.println("\n------------------PRINT USER'S BOOKED TICKETS------------------------------------");
         for (Ticket ticket: vitali.getTickets()){
