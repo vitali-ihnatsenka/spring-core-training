@@ -9,5 +9,6 @@ import java.util.List;
  */
 public interface AuditoriumService {
     List<Auditorium> getAuditoriums();
-    // FIXME: 0.5% missing getSeatsNumber, getVipSeats
+    int getSeatsNumber(Auditorium auditorium);
+    List<Integer> getVipSeats(Auditorium auditorium);
 }

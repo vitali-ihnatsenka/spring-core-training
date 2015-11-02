@@ -16,6 +16,16 @@ public class AuditoriumServiceImpl implements AuditoriumService {
         return auditoriumDao.getAuditoriums();
     }
 
+    @Override
+    public int getSeatsNumber(Auditorium auditorium) {
+        return auditorium.getNumberOfSeats();
+    }
+
+    @Override
+    public List<Integer> getVipSeats(Auditorium auditorium) {
+        return auditorium.getVipSeats();
+    }
+
     public void setAuditoriumDao(AuditoriumDao auditoriumDao) {
         this.auditoriumDao = auditoriumDao;
     }
