@@ -78,6 +78,13 @@ public class App {
         eventService.assignAuditorium(eventService.getByName("Chuck Norris"), auditoriumService.getAuditoriums().get(1), df.parse("05/02/2015"));
         eventService.assignAuditorium(eventService.getByName("Snatch"), auditoriumService.getAuditoriums().get(1), df.parse("01/05/2015"));
 
+        System.out.println("\n------------------TEST REMOVE SERVICE ------------------------------------");
+        Event wrongEvent = new Event("WrongEvent", 20, Rating.LOW);
+        eventService.create(wrongEvent);
+        System.out.println("Wrong event: " + eventService.getByName("WrongEvent"));
+        System.out.println("------------------Removing event ------------------------------------");
+        eventService.remove(wrongEvent);
+        System.out.println("Trying to print removed event (Expected null): " + eventService.getByName("WrongEvent"));
 
         System.out.println("\n\n\n------------------AUDITORIUM SERVICE TEST------------------------------------");
         for(Auditorium auditorium : auditoriumService.getAuditoriums()){

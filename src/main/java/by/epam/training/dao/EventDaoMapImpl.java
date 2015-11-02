@@ -21,8 +21,8 @@ public class EventDaoMapImpl implements EventDao {
     }
 
     @Override
-    public void remove(int id) {
-        eventMap.remove(id);
+    public void remove(Event event) {
+        eventMap.values().remove(event);
     }
 
     @Override

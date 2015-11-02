@@ -12,10 +12,8 @@ import java.util.List;
  */
 public interface EventService {
     void create(Event event);
-    // FIXME: 0.5%: never used
-    void remove(int id);
+    void remove(Event event);
     Event getByName(String name);
-    // FIXME: 0.5%: never used
     Event getById(int id);
     List<Event> getAll();
     List<EventShow> getForDateRange(Date from, Date to);

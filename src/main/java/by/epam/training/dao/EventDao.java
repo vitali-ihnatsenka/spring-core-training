@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface EventDao {
     void create(Event event);
-    void remove(int id);
+    void remove(Event event);
     Event getByName(String name);
     Event getById(int id);
     List<Event> getAll();
