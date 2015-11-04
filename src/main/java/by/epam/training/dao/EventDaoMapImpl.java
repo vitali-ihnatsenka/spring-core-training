@@ -1,5 +1,6 @@
 package by.epam.training.dao;
 
+import by.epam.training.dao.exception.AuditoriumIsBookedException;
 import by.epam.training.domain.Auditorium;
 import by.epam.training.domain.Event;
 import by.epam.training.domain.EventShow;
@@ -59,7 +60,11 @@ public class EventDaoMapImpl implements EventDao {
 
     @Override
     public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
-        eventShowMap.put(dataMapService.getUniqueRandomId(eventMap.keySet()), new EventShow(event, auditorium, date));
+        EventShow eventShow =  new EventShow(event, auditorium, date);
+        if(eventShowMap.containsValue(eventShow)){
+            throw new AuditoriumIsBookedException(eventShow);
+        }
+        eventShowMap.put(dataMapService.getUniqueRandomId(eventMap.keySet()), eventShow);
     }
 
     @Override

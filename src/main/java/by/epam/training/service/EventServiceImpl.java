@@ -53,10 +53,16 @@ public class EventServiceImpl implements EventService {
         return getForDateRange(new Date(), to);
     }
 
+    /**
+     *
+     * @param event
+     * @param auditorium
+     * @param date
+     * @throws by.epam.training.dao.exception.AuditoriumIsBookedException
+     */
     @Override
     public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
         System.out.println("--------assign EVENT: " + event + " AUDITORIUM: " + auditorium + " DATE: " + date);
-        // FIXME: 1%: Only one auditorium for Event for specific dateTime
         eventDao.assignAuditorium(event, auditorium, date);
     }
 
