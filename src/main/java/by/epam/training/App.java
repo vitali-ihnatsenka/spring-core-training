@@ -31,7 +31,8 @@ public class App {
         userService.register(new User("Vitali_111@epam.com", "Vitali", df.parse("12/03/1987")));
         userService.register(new User("Viweli_222@epam.com", "Viewdli", df.parse("15/04/1976")));
 
-        User vitali = userService.getUserByEmail("Viweli_222@epam.com");
+        User viewdli = userService.getUserByEmail("Viweli_222@epam.com");
+        User vitali = userService.getUserByEmail("Vitali_Ihnatsenka@epam.com");
         List<User> users = userService.getUsersByName("Vitali");
         System.out.println("\n------------------PRINT USER WITH EMAIL Viweli_222@epam.com------------------------------------");
         System.out.println(vitali);
@@ -41,7 +42,7 @@ public class App {
             System.out.println(userService.getUserId(user));
         }
         System.out.println("\n------------------PRINT USER ID FOR Viweli_sadasd@epam.com AND GET USER BY ID------------------------------------");
-        int id = userService.getUserId(vitali);
+        int id = userService.getUserId(viewdli);
         System.out.println(id);
         System.out.println(userService.getByID(id));
         userService.remove(id);
@@ -124,6 +125,8 @@ public class App {
         for (Ticket ticket: vitali.getTickets()){
             System.out.println(ticket);
         }
+        System.out.println(userService.getBookedTickets(userService.getUserId(vitali)));
+
 
         System.out.println("\n------------------PRINT ALL TICKETS FOR EVENT------------------------------------");
         for (Ticket ticket: bookingService.getTicketsForEvent(eventShowList.get(0))){
