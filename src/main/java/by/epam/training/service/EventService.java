@@ -17,7 +17,6 @@ public interface EventService {
     Event getById(int id);
     List<Event> getAll();
     List<EventShow> getForDateRange(Date from, Date to);
-    // FIXME: 0.5%: never used
     List<EventShow> getNextEvents(Date to);
     void assignAuditorium(Event event, Auditorium auditorium, Date date);
     int getEventId(Event event);

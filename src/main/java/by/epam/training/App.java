@@ -74,8 +74,8 @@ public class App {
         eventService.assignAuditorium(eventService.getByName("Terminator"), auditoriumService.getAuditoriums().get(2), df.parse("01/02/2015"));
         eventService.assignAuditorium(eventService.getByName("Terminator"), auditoriumService.getAuditoriums().get(1), df.parse("01/02/2015"));
         eventService.assignAuditorium(eventService.getByName("Terminator"), auditoriumService.getAuditoriums().get(2), df.parse("02/02/2015"));
-        eventService.assignAuditorium(eventService.getByName("Chuck Norris"), auditoriumService.getAuditoriums().get(1), df.parse("05/02/2015"));
-        eventService.assignAuditorium(eventService.getByName("Chuck Norris"), auditoriumService.getAuditoriums().get(1), df.parse("05/02/2015"));
+        eventService.assignAuditorium(eventService.getByName("Chuck Norris"), auditoriumService.getAuditoriums().get(1), df.parse("05/02/2016"));
+        eventService.assignAuditorium(eventService.getByName("Chuck Norris"), auditoriumService.getAuditoriums().get(1), df.parse("06/02/2016"));
         eventService.assignAuditorium(eventService.getByName("Snatch"), auditoriumService.getAuditoriums().get(1), df.parse("01/05/2015"));
 
         System.out.println("\n------------------TEST REMOVE METHOD ------------------------------------");
@@ -92,6 +92,9 @@ public class App {
         int eventId = eventService.getEventId(testEvent);
         System.out.println("Test Event id(using getEventId method): " + eventId);
         System.out.println("Event by id(" + eventId + "): " + eventService.getById(eventId));
+
+        System.out.println("\n------------------TEST GET NEXT EVENTS------------------------------------");
+        System.out.println(eventService.getNextEvents(df.parse("05/02/2020")));
 
         System.out.println("\n\n\n------------------AUDITORIUM SERVICE TEST------------------------------------");
         for(Auditorium auditorium : auditoriumService.getAuditoriums()){
