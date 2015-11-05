@@ -14,7 +14,6 @@ public interface UserService {
     User getByID(int id);
     User getUserByEmail(String email);
     List<User> getUsersByName(String name);
-    // FIXME: 0.5%: never used
     List<Ticket>  getBookedTickets(int userID);
     int getUserId(User user);
 }

@@ -2,10 +2,7 @@ package by.epam.training;
 
 import by.epam.training.dao.exception.TicketIsBookedException;
 import by.epam.training.domain.*;
-import by.epam.training.service.AuditoriumService;
-import by.epam.training.service.BookingService;
-import by.epam.training.service.EventService;
-import by.epam.training.service.UserService;
+import by.epam.training.service.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -147,6 +144,12 @@ public class App {
             System.out.println(i + " -- " + bookingService.getTicketPrice(eventShowList.get(2),i,vitali));
         }
 
+        System.out.println("\n\n\n------------------AOP TESTS------------------------------------");
+        System.out.println("\n------------------COUNTER ASPECT TEST------------------------------------");
+        CounterService counterService = appContext.getBean("counterService", CounterService.class);
+        System.out.println("getByName:  " + counterService.getCounter("getByName"));
+        System.out.println("getTicketPrice: " + counterService.getCounter("getTicketPrice"));
+        System.out.println("bookTicket: " + counterService.getCounter("bookTicket"));
     }
 
 }

@@ -38,7 +38,6 @@ public class BookingServiceImpl implements BookingService {
     public void bookTicket(Ticket ticket, User user) {
         ticketDao.bookTicket(ticket);
         userDao.addTicket(user, ticket);
-
     }
 
     //EventShow object includes date of event
