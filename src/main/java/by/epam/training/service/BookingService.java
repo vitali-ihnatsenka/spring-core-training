@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Vitali on 20.10.2015.
  */
 public interface BookingService {
-    int getTicketPrice(EventShow eventShow, int seat, User user);
+    int getTicketPrice(Ticket ticket, User user);
     void bookTicket(Ticket ticket, User user);
     List<Ticket> getTicketsForEvent(EventShow eventShow);
 }

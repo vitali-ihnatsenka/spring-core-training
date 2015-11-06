@@ -6,6 +6,7 @@ package by.epam.training.domain;
 public class Ticket {
     private EventShow eventShow;
     private int seatNumber;
+    private boolean lucky = false;
 
     public Ticket(EventShow eventShow, int seatNumber) {
         this.eventShow = eventShow;
@@ -28,6 +29,14 @@ public class Ticket {
         this.seatNumber = seatNumber;
     }
 
+    public boolean isLucky() {
+        return lucky;
+    }
+
+    public void setLucky(boolean lucky) {
+        this.lucky = lucky;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,6 +44,7 @@ public class Ticket {
 
         Ticket ticket = (Ticket) o;
 
+        if (lucky != ticket.lucky) return false;
         if (seatNumber != ticket.seatNumber) return false;
         if (eventShow != null ? !eventShow.equals(ticket.eventShow) : ticket.eventShow != null) return false;
 
@@ -45,6 +55,7 @@ public class Ticket {
     public int hashCode() {
         int result = eventShow != null ? eventShow.hashCode() : 0;
         result = 31 * result + seatNumber;
+        result = 31 * result + (lucky ? 1 : 0);
         return result;
     }
 
@@ -53,6 +64,7 @@ public class Ticket {
         return "Ticket{" +
                 "eventShow=" + eventShow +
                 ", seatNumber=" + seatNumber +
+                ", lucky=" + lucky +
                 '}';
     }
 }

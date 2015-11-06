@@ -107,14 +107,14 @@ public class App {
         System.out.println("\n------------------PRINT EVENTS PRICES------------------------------------");
         List<EventShow> eventShowList = eventService.getForDateRange(df.parse("01/01/2015"), df.parse("01/12/2015"));
         for (EventShow eventShow: eventShowList){
-            System.out.println("VIP: " + bookingService.getTicketPrice(eventShow, eventShow.getAuditorium().getVipSeats().get(1), vitali));
-            System.out.println("NOVIP: " + bookingService.getTicketPrice(eventShow, 20, vitali));
+            System.out.println("VIP: " + bookingService.getTicketPrice(new Ticket(eventShow, eventShow.getAuditorium().getVipSeats().get(1)), vitali));
+            System.out.println("NOVIP: " + bookingService.getTicketPrice(new Ticket(eventShow, 20), vitali));
         }
         System.out.println("\n-------------------------------------------------------------------------");
         eventShowList = eventService.getForDateRange(df.parse("01/01/2015"), df.parse("06/02/2016"));
         for (EventShow eventShow: eventShowList){
-            System.out.println("VIP: " + bookingService.getTicketPrice(eventShow, eventShow.getAuditorium().getVipSeats().get(1), vitali111));
-            System.out.println("NOVIP: " + bookingService.getTicketPrice(eventShow, 20, vitali111));
+            System.out.println("VIP: " + bookingService.getTicketPrice(new Ticket(eventShow, eventShow.getAuditorium().getVipSeats().get(1)), vitali111));
+            System.out.println("NOVIP: " + bookingService.getTicketPrice(new Ticket(eventShow, 20), vitali111));
         }
 
         System.out.println("\n------------------BOOKING TICKETS------------------------------------");
@@ -141,14 +141,14 @@ public class App {
         System.out.println("\n------------------CHECK EVERY TEN TICKET DISCOUNT------------------------------------");
         for (int i = 0; i < 28; i++) {
             bookingService.bookTicket(new Ticket(eventShowList.get(2), i), vitali);
-            System.out.println(i + " -- " + bookingService.getTicketPrice(eventShowList.get(2),i,vitali));
+            System.out.println(i + " -- " + bookingService.getTicketPrice(new Ticket(eventShowList.get(2),i),vitali));
         }
 
         System.out.println("\n------------------CHECK BIRTHDAY DISCOUNT------------------------------------");
         eventShowList.get(2).setDate(vitali.getBirthday());
         for (int i = 29; i < 50; i++) {
             bookingService.bookTicket(new Ticket(eventShowList.get(2), i), vitali);
-            System.out.println(i + " -- " + bookingService.getTicketPrice(eventShowList.get(2),i,vitali));
+            System.out.println(i + " -- " + bookingService.getTicketPrice(new Ticket(eventShowList.get(2),i),vitali));
         }
 
         System.out.println("\n\n\n------------------AOP TESTS------------------------------------");
@@ -162,6 +162,11 @@ public class App {
         System.out.println("Total:  " + counterService.getCounter("getDiscount"));
         System.out.println("Vitali_Ihnatsenka@epam.com: " + counterService.getCounter("getDiscount-Vitali_Ihnatsenka@epam.com"));
         System.out.println("Vitali_111@epam.com: " + counterService.getCounter("getDiscount-Vitali_111@epam.com"));
+
+        System.out.println("\n------------------LUCKY WINNER ASPECT TEST------------------------------------");
+        for(Ticket ticket: vitali.getTickets()){
+            System.out.println(bookingService.getTicketPrice(ticket, vitali));
+        }
     }
 
 }

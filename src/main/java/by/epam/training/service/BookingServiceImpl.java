@@ -17,11 +17,15 @@ public class BookingServiceImpl implements BookingService {
     private UserDao userDao;
 
     @Override
-    public int getTicketPrice(EventShow eventShow, int seat, User user) {
+    public int getTicketPrice(Ticket ticket, User user) {
+        if(ticket.isLucky()){
+            return 0;
+        }
+        EventShow eventShow = ticket.getEventShow();
         int price = eventShow.getEvent().getBasePrice();
         List<Integer> vipSeats = eventShow.getAuditorium().getVipSeats();
         int discount = discountService.getDiscount(user, eventShow);
-        if(vipSeats.contains(seat)){
+        if(vipSeats.contains(ticket.getSeatNumber())){
             price *= 1.2;
         }
         if(eventShow.getEvent().getRating().equals(Rating.HIGH)){
