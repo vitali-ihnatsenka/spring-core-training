@@ -10,4 +10,6 @@
     <bean class="by.epam.training.aop.DiscountAspect">
         <property name="counterDao" ref="counterDaoMap"/>
     </bean>
+    <bean class="by.epam.training.aop.LuckyWinnerAspect"/>
+
 </beans>
