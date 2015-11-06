@@ -30,6 +30,7 @@ public class App {
 
         User viewdli = userService.getUserByEmail("Viweli_222@epam.com");
         User vitali = userService.getUserByEmail("Vitali_Ihnatsenka@epam.com");
+        User vitali111 = userService.getUserByEmail("Vitali_111@epam.com");
         List<User> users = userService.getUsersByName("Vitali");
         System.out.println("\n------------------PRINT USER WITH EMAIL Viweli_222@epam.com------------------------------------");
         System.out.println(vitali);
@@ -109,6 +110,12 @@ public class App {
             System.out.println("VIP: " + bookingService.getTicketPrice(eventShow, eventShow.getAuditorium().getVipSeats().get(1), vitali));
             System.out.println("NOVIP: " + bookingService.getTicketPrice(eventShow, 20, vitali));
         }
+        System.out.println("\n-------------------------------------------------------------------------");
+        eventShowList = eventService.getForDateRange(df.parse("01/01/2015"), df.parse("06/02/2016"));
+        for (EventShow eventShow: eventShowList){
+            System.out.println("VIP: " + bookingService.getTicketPrice(eventShow, eventShow.getAuditorium().getVipSeats().get(1), vitali111));
+            System.out.println("NOVIP: " + bookingService.getTicketPrice(eventShow, 20, vitali111));
+        }
 
         System.out.println("\n------------------BOOKING TICKETS------------------------------------");
         bookingService.bookTicket(new Ticket(eventShowList.get(1), 1), vitali);
@@ -150,6 +157,11 @@ public class App {
         System.out.println("getByName:  " + counterService.getCounter("getByName"));
         System.out.println("getTicketPrice: " + counterService.getCounter("getTicketPrice"));
         System.out.println("bookTicket: " + counterService.getCounter("bookTicket"));
+
+        System.out.println("\n------------------DISCOUNT ASPECT TEST------------------------------------");
+        System.out.println("Total:  " + counterService.getCounter("getDiscount"));
+        System.out.println("Vitali_Ihnatsenka@epam.com: " + counterService.getCounter("getDiscount-Vitali_Ihnatsenka@epam.com"));
+        System.out.println("Vitali_111@epam.com: " + counterService.getCounter("getDiscount-Vitali_111@epam.com"));
     }
 
 }
