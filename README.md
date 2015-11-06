@@ -1,6 +1,6 @@
-# Spring Core course: Task 1
+# Spring Core course:
 
-## Task description:
+## Task1 description:
 - Create Spring application with the following services and logic using either XML or Annotation configuration.
 - Create domain objects as needed.
 - Create DAO classes for storing data in maps (later, they will be replaced for storing data in DB).
@@ -37,3 +37,11 @@ Several auditoriums can be stored in separate property files, information from t
     * Every 10th ticket - give 50% for every 10th ticket purchased by user
 * All discount strategies should be injected as list into the DiscountService. The getDiscount method will execute each strategy to get max available discount.
 * Define DiscountService with all strategies as separate beans in separate configuration file (either separate XML or separate Java config class)
+
+## Task2 description:
+- CounterAspect - count how many times each event was accessed by name, how many times its prices were queried, how many times its tickets were booked. Store counters in map for now (later could be replaced by DB dao)
+- DiscountAspect - count how many times each discount was given total and for specific user
+- LuckyWinnerAspect - every time the bookTicket method is executed perform the checkLucky method for the user that based on some randomness will return true or false. If user is lucky, the ticketPrice changes to zero and ticket is booked, thus user pays nothing. Store the information about this lucky event into the user object (like some system messages or so) - OPTIONAL
+
+
+
