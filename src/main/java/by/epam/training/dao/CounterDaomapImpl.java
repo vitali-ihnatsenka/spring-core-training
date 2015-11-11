@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  */
-
+// FIXME: 1%: typo in the file name (CounterDaomapImpl.java)
 public class CounterDaoMapImpl implements CounterDao {
     private Map<String, Integer> counterMap = new HashMap<String, Integer>();
 

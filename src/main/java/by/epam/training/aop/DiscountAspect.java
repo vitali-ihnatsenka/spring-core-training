@@ -15,6 +15,8 @@ public class DiscountAspect {
 
     @Before("execution(int getDiscount(..)) && target(by.epam.training.service.discount.DiscountStrategy) && args(user,..)")
     public void countBefore(JoinPoint joinPoint, User user){
+        // FIXME: 2%: count how many times each discount was given total and for specific user
+        // it means that we need have separate counter for each DiscountStrategy
         String name = joinPoint.getSignature().getName();
         counterDao.incrementCounter(name);
         counterDao.incrementCounter(name + "-" + user.getEmail());
