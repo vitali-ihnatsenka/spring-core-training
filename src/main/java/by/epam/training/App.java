@@ -159,9 +159,12 @@ public class App {
         System.out.println("bookTicket: " + counterService.getCounter("bookTicket"));
 
         System.out.println("\n------------------DISCOUNT ASPECT TEST------------------------------------");
-        System.out.println("Total:  " + counterService.getCounter("getDiscount"));
-        System.out.println("Vitali_Ihnatsenka@epam.com: " + counterService.getCounter("getDiscount-Vitali_Ihnatsenka@epam.com"));
-        System.out.println("Vitali_111@epam.com: " + counterService.getCounter("getDiscount-Vitali_111@epam.com"));
+        System.out.println("Total every ten strategy:  " + counterService.getCounter("by.epam.training.service.discount.EveryTenTicketStrategy-getDiscount"));
+        System.out.println("Vitali_Ihnatsenka@epam.com -- every ten strategy: " + counterService.getCounter("by.epam.training.service.discount.EveryTenTicketStrategy-getDiscount-Vitali_Ihnatsenka@epam.com"));
+        System.out.println("Vitali_111@epam.com: -- every ten strategy: " + counterService.getCounter("by.epam.training.service.discount.BirthdayStrategy-getDiscount-Vitali_111@epam.com"));
+        System.out.println("Total birthday strategy:  " + counterService.getCounter("by.epam.training.service.discount.BirthdayStrategy-getDiscount"));
+        System.out.println("Vitali_Ihnatsenka@epam.com -- birthday strategy: " + counterService.getCounter("by.epam.training.service.discount.BirthdayStrategy-getDiscount-Vitali_Ihnatsenka@epam.com"));
+        System.out.println("Vitali_111@epam.com: -- birthday strategy: " + counterService.getCounter("by.epam.training.service.discount.BirthdayStrategy-getDiscount-Vitali_111@epam.com"));
 
         System.out.println("\n------------------LUCKY WINNER ASPECT TEST------------------------------------");
         for(Ticket ticket: vitali.getTickets()){

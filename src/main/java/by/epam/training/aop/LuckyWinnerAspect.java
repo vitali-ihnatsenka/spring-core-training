@@ -17,7 +17,7 @@ public class LuckyWinnerAspect {
     //every 4th ticket is lucky
     @Before("execution(void bookTicket(..)) && target(by.epam.training.service.BookingService) && args(ticket,..)")
     public void doLucky(Ticket ticket){
-        // FIXME: 1%: Store the information about this lucky event into the user object (like some system messages or so)
+        //tickets are stored under user object
         ticket.setLucky(new Random().nextInt(4) == 1);
     }
 }
