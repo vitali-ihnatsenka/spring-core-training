@@ -43,5 +43,9 @@ Several auditoriums can be stored in separate property files, information from t
 - DiscountAspect - count how many times each discount was given total and for specific user
 - LuckyWinnerAspect - every time the bookTicket method is executed perform the checkLucky method for the user that based on some randomness will return true or false. If user is lucky, the ticketPrice changes to zero and ticket is booked, thus user pays nothing. Store the information about this lucky event into the user object (like some system messages or so) - OPTIONAL
 
+## Task3 description:
+- Create DAO objects that use JDBCTemplate to store and retrieve data from DB.
+- Add DAO object to store all counters into the database.
+
 
 
