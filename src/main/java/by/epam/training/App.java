@@ -5,6 +5,7 @@ import by.epam.training.domain.*;
 import by.epam.training.service.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -170,6 +171,11 @@ public class App {
         for(Ticket ticket: vitali.getTickets()){
             System.out.println(bookingService.getTicketPrice(ticket, vitali));
         }
+
+        System.out.println("\n------------------JDBC TEST------------------------------------");
+        JdbcTemplate jdbcTemplate = appContext.getBean("jdbcTemplate", JdbcTemplate.class);
+        int testCount = jdbcTemplate.queryForObject("select count(*) from users", Integer.class);
+        System.out.println("TEST COUNT --------------------------- " + testCount);
     }
 
 }
