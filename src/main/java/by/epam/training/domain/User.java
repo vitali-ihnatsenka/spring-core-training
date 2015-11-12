@@ -1,21 +1,38 @@
 package by.epam.training.domain;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Vitali Ihnatsenka on 20.10.2015.
  */
 public class User {
+    private int id;
     private String email;
     private String name;
     private Date birthday;
 
-    public User(String email, String name, Date birthday) {
+    public User(){
+    }
+
+    public User( String email, String name, Date birthday) {
         this.email = email;
         this.name = name;
         this.birthday = birthday;
+    }
+
+    public User(int id, String email, String name, Date birthday) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.birthday = birthday;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {

@@ -4,14 +4,29 @@ package by.epam.training.domain;
  * Created by Vitali on 20.10.2015.
  */
 public class Event {
+    private int id;
     private String name;
     private int basePrice;
     private Rating rating;
 
-    public Event(String name, int basePrice, Rating rating) {
+    public Event(int id, String name, int basePrice, Rating rating) {
         this.name = name;
         this.basePrice = basePrice;
         this.rating = rating;
+    }
+
+//    public Event(String name, int basePrice, Rating rating) {
+//        this.name = name;
+//        this.basePrice = basePrice;
+//        this.rating = rating;
+//    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

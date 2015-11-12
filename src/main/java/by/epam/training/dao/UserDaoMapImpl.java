@@ -65,11 +65,6 @@ public class UserDaoMapImpl implements UserDao{
     }
 
     @Override
-    public int getUserId(User user) {
-        return dataMapService.getObjectId(userMap, user);
-    }
-
-    @Override
     public void addTicket(User user, Ticket ticket) {
         if(bookedTicketMap.containsValue(ticket)){
             throw new TicketBookedException(ticket);

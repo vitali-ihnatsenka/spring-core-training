@@ -8,6 +8,9 @@ public class Ticket {
     private int seatNumber;
     private boolean lucky = false;
 
+    public Ticket() {
+    }
+
     public Ticket(EventShow eventShow, int seatNumber) {
         this.eventShow = eventShow;
         this.seatNumber = seatNumber;

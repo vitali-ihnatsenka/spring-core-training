@@ -1,7 +1,10 @@
 package by.epam.training.dao;
 
+import by.epam.training.domain.Auditorium;
+import by.epam.training.domain.EventShow;
 import by.epam.training.domain.Ticket;
 import by.epam.training.domain.User;
+import org.apache.derby.iapi.sql.Row;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -15,6 +18,8 @@ import java.util.List;
 
 public class UsersDaoDBImpl implements UserDao {
     private JdbcTemplate jdbcTemplate;
+    private EventDao eventDao;
+    private AuditoriumDao auditoriumDao;
 
     @Override
     public void register(String email, String name, Date birthday) {
@@ -43,34 +48,58 @@ public class UsersDaoDBImpl implements UserDao {
 
     @Override
     public List<Ticket> getBookedTickets(int userId) {
-       // return jdbcTemplate.query("SELECT * FROM users WHERE name=?", new Object[]{name}, new UserRowMapper() );
-        return null;
-    }
-
-    @Override
-    public int getUserId(User user) {
-        return jdbcTemplate.queryForObject("SELECT id FROM users WHERE name=? AND email=? AND birthday=?",
-                new Object[]{user.getName(), user.getEmail(), user.getBirthday()}, Integer.class);
+        return jdbcTemplate.query("SELECT * FROM tickets WHERE user_id=?", new Object[]{userId}, new TicketRowMapper());
     }
 
     @Override
     public void addTicket(User user, Ticket ticket) {
-
+        EventShow eventShow = ticket.getEventShow();
+        jdbcTemplate.update("INSERT INTO tickets(event_id, auditorium_name, user_id, seat_number, show_date, lucky) VALUES(?, ?, ?, ?, ?, ?)",
+                eventShow.getEvent().getId(), eventShow.getAuditorium().getName(), user.getId(), ticket.getSeatNumber(), eventShow.getDate(), ticket.isLucky());
     }
 
     private class UserRowMapper implements RowMapper<User>{
         @Override
         public User mapRow(ResultSet resultSet, int i) throws SQLException {
+            int id = resultSet.getInt("id");
             String name = resultSet.getString("name");
             String email = resultSet.getString("email");
             Date birthday = resultSet.getDate("birthday");
-            User user = new User(email, name, birthday);
-
+            User user = new User(id, email, name, birthday);
             return user;
+        }
+    }
+
+    private class TicketRowMapper implements RowMapper<Ticket>{
+        @Override
+        public Ticket mapRow(ResultSet resultSet, int i) throws SQLException {
+            Ticket ticket = new Ticket();
+            EventShow eventShow = new EventShow();
+            int eventID = resultSet.getInt("event_id");
+            eventShow.setEvent(eventDao.getById(eventID));
+            String auditoriumName = resultSet.getString("auditorium_name");
+            for(Auditorium auditorium : auditoriumDao.getAuditoriums()){
+                if(auditorium.getName().equals(auditoriumName)){
+                    eventShow.setAuditorium(auditorium);
+                }
+            }
+            ticket.setSeatNumber(resultSet.getInt("seat_number"));
+            ticket.setLucky(resultSet.getBoolean("lucky"));
+            eventShow.setDate(resultSet.getDate("show_date"));
+            ticket.setEventShow(eventShow);
+            return ticket;
         }
     }
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public void setEventDao(EventDao eventDao) {
+        this.eventDao = eventDao;
+    }
+
+    public void setAuditoriumDao(AuditoriumDao auditoriumDao) {
+        this.auditoriumDao = auditoriumDao;
     }
 }

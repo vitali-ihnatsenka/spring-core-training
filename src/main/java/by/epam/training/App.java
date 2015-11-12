@@ -53,11 +53,11 @@ public class App {
         EventService eventService = appContext.getBean("eventService", EventService.class);
         AuditoriumService auditoriumService = appContext.getBean("auditoriumService", AuditoriumService.class);
 
-        eventService.create(new Event("Terminator", 1000, Rating.HIGH));
-        eventService.create(new Event("Jacky chan", 500, Rating.LOW));
-        eventService.create(new Event("Chuck Norris", 1500, Rating.HIGH));
-        eventService.create(new Event("Happy tree friends", 200, Rating.LOW));
-        eventService.create(new Event("Snatch", 900, Rating.MID));
+//        eventService.create(new Event("Terminator", 1000, Rating.HIGH));
+//        eventService.create(new Event("Jacky chan", 500, Rating.LOW));
+//        eventService.create(new Event("Chuck Norris", 1500, Rating.HIGH));
+//        eventService.create(new Event("Happy tree friends", 200, Rating.LOW));
+//        eventService.create(new Event("Snatch", 900, Rating.MID));
 
         System.out.println("\n------------------PRINT EVENT BY NAME------------------------------------");
         System.out.println(eventService.getByName("Terminator"));
@@ -77,20 +77,20 @@ public class App {
         eventService.assignAuditorium(eventService.getByName("Chuck Norris"), auditoriumService.getAuditoriums().get(1), df.parse("06/02/2016"));
         eventService.assignAuditorium(eventService.getByName("Snatch"), auditoriumService.getAuditoriums().get(1), df.parse("01/05/2015"));
 
-        System.out.println("\n------------------TEST REMOVE METHOD ------------------------------------");
-        Event wrongEvent = new Event("WrongEvent", 20, Rating.LOW);
-        eventService.create(wrongEvent);
-        System.out.println("Wrong event: " + eventService.getByName("WrongEvent"));
-        System.out.println("------------------Removing event ------------------------------------");
-        eventService.remove(wrongEvent);
-        System.out.println("Trying to print removed event (Expected null): " + eventService.getByName("WrongEvent"));
-
-        System.out.println("\n------------------TEST GET BY ID METHOD ------------------------------------");
-        Event testEvent = new Event("TestEvent", 10, Rating.MID);
-        eventService.create(testEvent);
-        int eventId = eventService.getEventId(testEvent);
-        System.out.println("Test Event id(using getEventId method): " + eventId);
-        System.out.println("Event by id(" + eventId + "): " + eventService.getById(eventId));
+//        System.out.println("\n------------------TEST REMOVE METHOD ------------------------------------");
+//        Event wrongEvent = new Event("WrongEvent", 20, Rating.LOW);
+//        eventService.create(wrongEvent);
+//        System.out.println("Wrong event: " + eventService.getByName("WrongEvent"));
+//        System.out.println("------------------Removing event ------------------------------------");
+//        eventService.remove(wrongEvent);
+//        System.out.println("Trying to print removed event (Expected null): " + eventService.getByName("WrongEvent"));
+//
+//        System.out.println("\n------------------TEST GET BY ID METHOD ------------------------------------");
+//        Event testEvent = new Event("TestEvent", 10, Rating.MID);
+//        eventService.create(testEvent);
+//        int eventId = eventService.getEventId(testEvent);
+//        System.out.println("Test Event id(using getEventId method): " + eventId);
+//        System.out.println("Event by id(" + eventId + "): " + eventService.getById(eventId));
 
         System.out.println("\n------------------TEST GET NEXT EVENTS------------------------------------");
         System.out.println(eventService.getNextEvents(df.parse("05/02/2020")));
@@ -125,11 +125,11 @@ public class App {
             System.out.println("Ticket " + e.getTicket() + "is already booked");
         }
         bookingService.bookTicket(new Ticket(eventShowList.get(1), 2), vitali);
-        System.out.println("\n------------------PRINT USER'S BOOKED TICKETS------------------------------------");
-        for (Ticket ticket: vitali.getTickets()){
-            System.out.println(ticket);
-        }
-        System.out.println(userService.getBookedTickets(userService.getUserId(vitali)));
+//        System.out.println("\n------------------PRINT USER'S BOOKED TICKETS------------------------------------");
+//        for (Ticket ticket: vitali.getTickets()){
+//            System.out.println(ticket);
+//        }
+//        System.out.println(userService.getBookedTickets(userService.getUserId(vitali)));
 
 
         System.out.println("\n------------------PRINT ALL TICKETS FOR EVENT------------------------------------");
@@ -167,7 +167,7 @@ public class App {
         System.out.println("Vitali_111@epam.com: -- birthday strategy: " + counterService.getCounter("by.epam.training.service.discount.BirthdayStrategy-getDiscount-Vitali_111@epam.com"));
 
         System.out.println("\n------------------LUCKY WINNER ASPECT TEST------------------------------------");
-        for(Ticket ticket: vitali.getTickets()){
+        for(Ticket ticket: userService.getBookedTickets(vitali.getId())){
             System.out.println(bookingService.getTicketPrice(ticket, vitali));
         }
     }

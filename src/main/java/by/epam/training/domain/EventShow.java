@@ -10,6 +10,9 @@ public class EventShow {
     private Auditorium auditorium;
     private Date date;
 
+    public EventShow() {
+    }
+
     public EventShow(Event event, Auditorium auditorium, Date date) {
         this.event = event;
         this.auditorium = auditorium;
