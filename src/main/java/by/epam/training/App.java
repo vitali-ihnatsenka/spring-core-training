@@ -1,11 +1,10 @@
 package by.epam.training;
 
-import by.epam.training.dao.exception.TicketIsBookedException;
+import by.epam.training.dao.exception.TicketBookedException;
 import by.epam.training.domain.*;
 import by.epam.training.service.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -25,9 +24,9 @@ public class App {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
         System.out.println("------------------USER SERVICE TEST------------------------------------");
-        userService.register(new User("Vitali_Ihnatsenka@epam.com", "Vitali", df.parse("14/07/1989")));
-        userService.register(new User("Vitali_111@epam.com", "Vitali", df.parse("12/03/1987")));
-        userService.register(new User("Viweli_222@epam.com", "Viewdli", df.parse("15/04/1976")));
+        userService.register("Vitali_Ihnatsenka@epam.com", "Vitali", df.parse("14/07/1989"));
+        userService.register("Vitali_111@epam.com", "Vitali", df.parse("12/03/1987"));
+        userService.register("Viweli_222@epam.com", "Viewdli", df.parse("15/04/1976"));
 
         User viewdli = userService.getUserByEmail("Viweli_222@epam.com");
         User vitali = userService.getUserByEmail("Vitali_Ihnatsenka@epam.com");
@@ -122,7 +121,7 @@ public class App {
         bookingService.bookTicket(new Ticket(eventShowList.get(1), 1), vitali);
         try{
             bookingService.bookTicket(new Ticket(eventShowList.get(1), 1), vitali);
-        }catch (TicketIsBookedException e){
+        }catch (TicketBookedException e){
             System.out.println("Ticket " + e.getTicket() + "is already booked");
         }
         bookingService.bookTicket(new Ticket(eventShowList.get(1), 2), vitali);
@@ -171,11 +170,6 @@ public class App {
         for(Ticket ticket: vitali.getTickets()){
             System.out.println(bookingService.getTicketPrice(ticket, vitali));
         }
-
-        System.out.println("\n------------------JDBC TEST------------------------------------");
-        JdbcTemplate jdbcTemplate = appContext.getBean("jdbcTemplate", JdbcTemplate.class);
-        int testCount = jdbcTemplate.queryForObject("select count(*) from users", Integer.class);
-        System.out.println("TEST COUNT --------------------------- " + testCount);
     }
 
 }

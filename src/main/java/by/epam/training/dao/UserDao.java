@@ -3,13 +3,14 @@ package by.epam.training.dao;
 import by.epam.training.domain.Ticket;
 import by.epam.training.domain.User;
 
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Vitali Ihnatsenka on 23.10.2015.
  */
 public interface UserDao {
-    void register(User user);
+    void register(String email, String name, Date birthday);
     void remove(int id);
     User getById(int id);
     User getUserByEmail(String email);

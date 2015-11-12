@@ -1,7 +1,7 @@
 package by.epam.training.service;
 
-import by.epam.training.dao.TicketDao;
 import by.epam.training.dao.UserDao;
+import by.epam.training.dao.exception.TicketBookedException;
 import by.epam.training.domain.*;
 import by.epam.training.service.discount.DiscountService;
 
@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class BookingServiceImpl implements BookingService {
     private DiscountService discountService;
-    private TicketDao ticketDao;
     private UserDao userDao;
 
     @Override
@@ -36,11 +35,10 @@ public class BookingServiceImpl implements BookingService {
     }
 
     /**
-     * @throws by.epam.training.dao.exception.TicketIsBookedException when ticket is already booked
+     * @throws TicketBookedException when ticket is already booked
      */
     @Override
     public void bookTicket(Ticket ticket, User user) {
-        ticketDao.bookTicket(ticket);
         userDao.addTicket(user, ticket);
     }
 
@@ -56,10 +54,6 @@ public class BookingServiceImpl implements BookingService {
 
     public void setDiscountService(DiscountService discountService) {
         this.discountService = discountService;
-    }
-
-    public void setTicketDao(TicketDao ticketDao) {
-        this.ticketDao = ticketDao;
     }
 
     public void setUserDao(UserDao userDao) {

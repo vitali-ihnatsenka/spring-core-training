@@ -1,24 +1,24 @@
 package by.epam.training.dao;
 
+import by.epam.training.dao.exception.TicketBookedException;
 import by.epam.training.domain.Ticket;
 import by.epam.training.domain.User;
 import by.epam.training.service.DataMapService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Vitali Ihnatsenka on 23.10.2015.
  */
 public class UserDaoMapImpl implements UserDao{
     static private Map<Integer, User> userMap = new HashMap<Integer, User>();
+    static private Map<Ticket, User> ticketUserMap = new HashMap<Ticket, User>();
+    static private Map<Integer, Ticket> bookedTicketMap = new HashMap<Integer, Ticket>();
     private DataMapService dataMapService;
 
     @Override
-    public void register(User user) {
-        dataMapService.register(userMap, user);
+    public void register(String email, String name, Date birthday) {
+        dataMapService.register(userMap, new User(name, email, birthday));
     }
 
     @Override
@@ -55,7 +55,13 @@ public class UserDaoMapImpl implements UserDao{
     @Override
     public List<Ticket> getBookedTickets(int userId) {
         User  user = userMap.get(userId);
-        return user.getTickets();
+        List<Ticket> tickets  = new ArrayList<Ticket>();
+        for(Map.Entry<Ticket, User> entry : ticketUserMap.entrySet()){
+            if(entry.getValue().equals(user)){
+                tickets.add(entry.getKey());
+            }
+        }
+        return tickets;
     }
 
     @Override
@@ -65,7 +71,11 @@ public class UserDaoMapImpl implements UserDao{
 
     @Override
     public void addTicket(User user, Ticket ticket) {
-        user.addTicket(ticket);
+        if(bookedTicketMap.containsValue(ticket)){
+            throw new TicketBookedException(ticket);
+        }
+        dataMapService.register(bookedTicketMap, ticket);
+        ticketUserMap.put(ticket, user);
     }
 
     public void setDataMapService(DataMapService dataMapService) {

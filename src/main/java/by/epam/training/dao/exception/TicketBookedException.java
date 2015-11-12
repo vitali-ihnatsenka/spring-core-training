@@ -5,10 +5,10 @@ import by.epam.training.domain.Ticket;
 /**
  * Created by Vitali on 27.10.2015.
  */
-public class TicketIsBookedException extends RuntimeException {
+public class TicketBookedException extends RuntimeException {
     private Ticket ticket;
 
-    public TicketIsBookedException(Ticket ticket) {
+    public TicketBookedException(Ticket ticket) {
         this.ticket = ticket;
     }
 

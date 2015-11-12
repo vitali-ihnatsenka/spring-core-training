@@ -10,7 +10,6 @@ import java.util.List;
 public class User {
     private String email;
     private String name;
-    private List<Ticket> tickets = new ArrayList<Ticket>();
     private Date birthday;
 
     public User(String email, String name, Date birthday) {
@@ -35,14 +34,6 @@ public class User {
         this.name = name;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void addTicket(Ticket ticket) {
-        this.tickets.add(ticket);
-    }
-
     public Date getBirthday() {
         return birthday;
     }
@@ -60,7 +51,6 @@ public class User {
 
         if (!email.equals(user.email)) return false;
         if (!name.equals(user.name)) return false;
-        if (!tickets.equals(user.tickets)) return false;
 
         return true;
     }
@@ -69,7 +59,6 @@ public class User {
     public int hashCode() {
         int result = email.hashCode();
         result = 31 * result + name.hashCode();
-        result = 31 * result + tickets.hashCode();
         return result;
     }
 

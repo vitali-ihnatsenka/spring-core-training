@@ -4,6 +4,7 @@ import by.epam.training.dao.UserDao;
 import by.epam.training.domain.Ticket;
 import by.epam.training.domain.User;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,9 +14,9 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public void register(User user) {
-        System.out.println("-------Register user: " + user + " ----------");
-        userDao.register(user);
+    public void register(String email, String name, Date birthday) {
+        System.out.println("-------Register user: " + new User(email, name, birthday)  + " ----------");
+        userDao.register(email, name, birthday);
     }
 
     @Override

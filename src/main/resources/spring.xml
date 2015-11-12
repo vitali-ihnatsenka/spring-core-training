@@ -71,21 +71,20 @@
     </bean>
 
     <bean id="bookingService" class="by.epam.training.service.BookingServiceImpl">
-        <property name="ticketDao" ref="ticketsDaoMap"/>
         <property name="discountService" ref="discountService"/>
         <property name="userDao" ref="userDaoMap"/>
     </bean>
 
-    <bean id="ticketsDaoMap" class="by.epam.training.dao.TicketDaoMapImpl">
-        <property name="dataMapService" ref="dataMapService"/>
-    </bean>
-
     <bean id="userService" class="by.epam.training.service.UserServiceImpl">
-        <property name="userDao" ref="userDaoMap"/>
+        <property name="userDao" ref="userDaoDB"/>
     </bean>
 
     <bean id="userDaoMap" class="by.epam.training.dao.UserDaoMapImpl">
         <property name="dataMapService" ref="dataMapService"/>
+    </bean>
+
+    <bean id="userDaoDB" class="by.epam.training.dao.UsersDaoDBImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 
     <bean id="eventService" class="by.epam.training.service.EventServiceImpl">

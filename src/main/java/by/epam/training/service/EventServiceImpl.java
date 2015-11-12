@@ -1,6 +1,7 @@
 package by.epam.training.service;
 
 import by.epam.training.dao.EventDao;
+import by.epam.training.dao.exception.AuditoriumBookedException;
 import by.epam.training.domain.Auditorium;
 import by.epam.training.domain.Event;
 import by.epam.training.domain.EventShow;
@@ -58,7 +59,7 @@ public class EventServiceImpl implements EventService {
      * @param event
      * @param auditorium
      * @param date
-     * @throws by.epam.training.dao.exception.AuditoriumIsBookedException
+     * @throws AuditoriumBookedException
      */
     @Override
     public void assignAuditorium(Event event, Auditorium auditorium, Date date) {

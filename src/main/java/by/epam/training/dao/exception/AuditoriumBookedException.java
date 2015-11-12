@@ -5,10 +5,10 @@ import by.epam.training.domain.EventShow;
 /**
  */
 
-public class AuditoriumIsBookedException extends RuntimeException {
+public class AuditoriumBookedException extends RuntimeException {
     private EventShow eventShow;
 
-    public AuditoriumIsBookedException(EventShow eventShow) {
+    public AuditoriumBookedException(EventShow eventShow) {
         this.eventShow = eventShow;
     }
 
