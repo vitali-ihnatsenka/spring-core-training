@@ -45,11 +45,6 @@ public class UserServiceImpl implements UserService {
         return userDao.getBookedTickets(userID);
     }
 
-    @Override
-    public int getUserId(User user) {
-        return userDao.getUserId(user);
-    }
-
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }

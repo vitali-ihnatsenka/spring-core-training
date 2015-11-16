@@ -15,11 +15,11 @@ public class Event {
         this.rating = rating;
     }
 
-//    public Event(String name, int basePrice, Rating rating) {
-//        this.name = name;
-//        this.basePrice = basePrice;
-//        this.rating = rating;
-//    }
+    public Event(String name, int basePrice, Rating rating) {
+        this.name = name;
+        this.basePrice = basePrice;
+        this.rating = rating;
+    }
 
     public int getId() {
         return id;

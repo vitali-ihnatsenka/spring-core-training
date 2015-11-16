@@ -66,24 +66,30 @@ public class User {
 
         User user = (User) o;
 
-        if (!email.equals(user.email)) return false;
-        if (!name.equals(user.name)) return false;
+        if (id != user.id) return false;
+        if (birthday != null ? !birthday.equals(user.birthday) : user.birthday != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = email.hashCode();
-        result = 31 * result + name.hashCode();
+        int result = id;
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "id=" + id +
                 ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", birthday=" + birthday +
                 '}';
     }
 }

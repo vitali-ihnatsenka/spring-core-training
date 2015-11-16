@@ -13,6 +13,7 @@
                 </bean>
                 <bean class="by.epam.training.service.discount.EveryTenTicketStrategy">
                     <property name="discountValue" value="${everyTenTicketDiscount}"/>
+                    <property name="userService" ref="userService"/>
                 </bean>
             </list>
         </property>

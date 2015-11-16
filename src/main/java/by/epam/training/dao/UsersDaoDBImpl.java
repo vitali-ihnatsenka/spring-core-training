@@ -5,6 +5,7 @@ import by.epam.training.domain.EventShow;
 import by.epam.training.domain.Ticket;
 import by.epam.training.domain.User;
 import org.apache.derby.iapi.sql.Row;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -33,17 +34,21 @@ public class UsersDaoDBImpl implements UserDao {
 
     @Override
     public User getById(int id) {
-        return jdbcTemplate.queryForObject("SELECT name, email, birthday FROM users WHERE id=?", new Object[]{id} , new UserRowMapper());
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM users WHERE id=?", new Object[]{id}, new UserRowMapper());
+        }catch(EmptyResultDataAccessException e){
+            return null;
+        }
     }
 
     @Override
     public User getUserByEmail(String email) {
-        return jdbcTemplate.queryForObject("SELECT name, email, birthday FROM users WHERE email=?", new Object[]{email}, new UserRowMapper());
+        return jdbcTemplate.queryForObject("SELECT * FROM users WHERE email=?", new Object[]{email}, new UserRowMapper());
     }
 
     @Override
     public List<User> getUsersByName(String name) {
-        return jdbcTemplate.query("SELECT name, email, birthday FROM users WHERE name=?", new Object[]{name}, new UserRowMapper() );
+        return jdbcTemplate.query("SELECT * FROM users WHERE name=?", new Object[]{name}, new UserRowMapper() );
     }
 
     @Override

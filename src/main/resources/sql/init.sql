@@ -7,9 +7,11 @@ CREATE TABLE users (
 
 CREATE TABLE tickets (
   id INTEGER PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-  event_show_id INTEGER,
+  event_id INTEGER,
+  auditorium_name VARCHAR(50),
   user_id INTEGER ,
   seat_number INTEGER,
+  show_date DATE,
   lucky BOOLEAN
 );
 
