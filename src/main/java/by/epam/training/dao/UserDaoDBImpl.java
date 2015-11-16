@@ -1,9 +1,6 @@
 package by.epam.training.dao;
 
-import by.epam.training.domain.Auditorium;
-import by.epam.training.domain.EventShow;
-import by.epam.training.domain.Ticket;
-import by.epam.training.domain.User;
+import by.epam.training.domain.*;
 import org.apache.derby.iapi.sql.Row;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,7 +14,7 @@ import java.util.List;
 /**
  */
 
-public class UsersDaoDBImpl implements UserDao {
+public class UserDaoDBImpl implements UserDao {
     private JdbcTemplate jdbcTemplate;
     private EventDao eventDao;
     private AuditoriumDao auditoriumDao;

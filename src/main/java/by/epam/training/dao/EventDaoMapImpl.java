@@ -4,6 +4,7 @@ import by.epam.training.dao.exception.AuditoriumBookedException;
 import by.epam.training.domain.Auditorium;
 import by.epam.training.domain.Event;
 import by.epam.training.domain.EventShow;
+import by.epam.training.domain.Rating;
 import by.epam.training.service.DataMapService;
 
 import java.util.*;
@@ -17,8 +18,8 @@ public class EventDaoMapImpl implements EventDao {
     private DataMapService dataMapService;
 
     @Override
-    public void create(Event event) {
-        dataMapService.register(eventMap, event);
+    public void create(String name, int baseprice, Rating rating) {
+        dataMapService.register(eventMap, new Event(name, baseprice, rating));
     }
 
     @Override
@@ -28,7 +29,9 @@ public class EventDaoMapImpl implements EventDao {
 
     @Override
     public Event getById(int id) {
-        return eventMap.get(id);
+        Event event = eventMap.get(id);
+        event.setId(id);
+        return event;
     }
 
     @Override
@@ -65,11 +68,6 @@ public class EventDaoMapImpl implements EventDao {
             throw new AuditoriumBookedException(eventShow);
         }
         eventShowMap.put(dataMapService.getUniqueRandomId(eventMap.keySet()), eventShow);
-    }
-
-    @Override
-    public int getEventId(Event event) {
-        return dataMapService.getObjectId(eventMap, event);
     }
 
     public void setDataMapService(DataMapService dataMapService) {

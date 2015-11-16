@@ -18,7 +18,7 @@ CREATE TABLE tickets (
 CREATE TABLE event_show(
   id INTEGER PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
   event_id INTEGER,
-  auditorium_id INTEGER,
+  auditorium_name VARCHAR(50),
   show_date DATE
 );
 

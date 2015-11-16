@@ -6,6 +6,7 @@ import java.util.Date;
  * Created by Vitali on 24.10.2015.
  */
 public class EventShow {
+    private int id;
     private Event event;
     private Auditorium auditorium;
     private Date date;
@@ -17,6 +18,21 @@ public class EventShow {
         this.event = event;
         this.auditorium = auditorium;
         this.date = date;
+    }
+
+    public EventShow(int id, Event event, Auditorium auditorium, Date date) {
+        this.id = id;
+        this.event = event;
+        this.auditorium = auditorium;
+        this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Event getEvent() {

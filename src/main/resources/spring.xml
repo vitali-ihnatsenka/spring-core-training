@@ -83,16 +83,21 @@
         <property name="dataMapService" ref="dataMapService"/>
     </bean>
 
-    <bean id="userDaoDB" class="by.epam.training.dao.UsersDaoDBImpl">
+    <bean id="userDaoDB" class="by.epam.training.dao.UserDaoDBImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 
     <bean id="eventService" class="by.epam.training.service.EventServiceImpl">
-        <property name="eventDao" ref="eventDaoMap"/>
+        <property name="eventDao" ref="eventDaoDB"/>
     </bean>
 
     <bean id="eventDaoMap" class="by.epam.training.dao.EventDaoMapImpl">
         <property name="dataMapService" ref="dataMapService"/>
+    </bean>
+
+    <bean id="eventDaoDB" class="by.epam.training.dao.EventDaoDBImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="auditoriumDao" ref="auditoriumDaoProperties"/>
     </bean>
 
     <bean id="dataMapService" class="by.epam.training.service.DataMapServiceImpl">

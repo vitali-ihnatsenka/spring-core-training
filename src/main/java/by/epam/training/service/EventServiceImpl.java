@@ -5,6 +5,7 @@ import by.epam.training.dao.exception.AuditoriumBookedException;
 import by.epam.training.domain.Auditorium;
 import by.epam.training.domain.Event;
 import by.epam.training.domain.EventShow;
+import by.epam.training.domain.Rating;
 
 import java.util.Date;
 import java.util.List;
@@ -16,9 +17,9 @@ public class EventServiceImpl implements EventService {
     private EventDao eventDao;
 
     @Override
-    public void create(Event event) {
-        System.out.println("-------- Create event " + event);
-        eventDao.create(event);
+    public void create(String name, int baseprice, Rating rating) {
+        System.out.println("-------- Create event " + new Event(name, baseprice, rating));
+        eventDao.create(name, baseprice, rating);
     }
 
     @Override
@@ -65,11 +66,6 @@ public class EventServiceImpl implements EventService {
     public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
         System.out.println("--------assign EVENT: " + event + " AUDITORIUM: " + auditorium + " DATE: " + date);
         eventDao.assignAuditorium(event, auditorium, date);
-    }
-
-    @Override
-    public int getEventId(Event event) {
-        return eventDao.getEventId(event);
     }
 
     public void setEventDao(EventDao eventDao) {

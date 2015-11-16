@@ -10,6 +10,7 @@ public class Event {
     private Rating rating;
 
     public Event(int id, String name, int basePrice, Rating rating) {
+        this.id = id;
         this.name = name;
         this.basePrice = basePrice;
         this.rating = rating;
@@ -61,7 +62,8 @@ public class Event {
         Event event = (Event) o;
 
         if (basePrice != event.basePrice) return false;
-        if (!name.equals(event.name)) return false;
+        if (id != event.id) return false;
+        if (name != null ? !name.equals(event.name) : event.name != null) return false;
         if (rating != event.rating) return false;
 
         return true;
@@ -69,16 +71,18 @@ public class Event {
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + basePrice;
-        result = 31 * result + rating.hashCode();
+        result = 31 * result + (rating != null ? rating.hashCode() : 0);
         return result;
     }
 
     @Override
-    public String  toString() {
+    public String toString() {
         return "Event{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", basePrice=" + basePrice +
                 ", rating=" + rating +
                 '}';
