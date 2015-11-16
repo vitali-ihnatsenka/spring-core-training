@@ -105,9 +105,13 @@
     </bean>
 
     <bean id="counterService" class="by.epam.training.service.CounterServiceImpl">
-        <property name="counterDao" ref="counterDaoMap"/>
+        <property name="counterDao" ref="counterDaoDB"/>
     </bean>
 
     <bean id="counterDaoMap" class="by.epam.training.dao.CounterDaomapImpl"/>
+
+    <bean id="counterDaoDB" class="by.epam.training.dao.CounterDaoDBImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
 
 </beans>

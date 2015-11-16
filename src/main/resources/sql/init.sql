@@ -24,9 +24,14 @@ CREATE TABLE event_show(
 
 CREATE TABLE events(
   id INTEGER PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-  name VARCHAR(30),
+  name VARCHAR(50),
   baseprice INTEGER,
-  rating VARCHAR(30)
+  rating VARCHAR(50)
+);
+
+CREATE TABLE counters(
+  name VARCHAR(200),
+  counter_value INTEGER
 );
 
 

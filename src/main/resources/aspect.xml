@@ -5,10 +5,10 @@
  		http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
     <bean class="by.epam.training.aop.CounterAspect">
-        <property name="counterDao" ref="counterDaoMap"/>
+        <property name="counterDao" ref="counterDaoDB"/>
     </bean>
     <bean class="by.epam.training.aop.DiscountAspect">
-        <property name="counterDao" ref="counterDaoMap"/>
+        <property name="counterDao" ref="counterDaoDB"/>
     </bean>
     <bean class="by.epam.training.aop.LuckyWinnerAspect"/>
 
