@@ -33,7 +33,7 @@ public class App {
         User vitali111 = userService.getUserByEmail("Vitali_111@epam.com");
         List<User> users = userService.getUsersByName("Vitali");
         System.out.println("\n------------------PRINT USER WITH EMAIL Viweli_222@epam.com------------------------------------");
-        System.out.println(vitali);
+        System.out.println(viewdli);
         System.out.println("\n------------------PRINT USERS WITH NAME Vitali------------------------------------");
         for (User user: users){
             System.out.println(user);

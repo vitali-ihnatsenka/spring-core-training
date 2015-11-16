@@ -72,7 +72,7 @@
 
     <bean id="bookingService" class="by.epam.training.service.BookingServiceImpl">
         <property name="discountService" ref="discountService"/>
-        <property name="userDao" ref="userDaoMap"/>
+        <property name="userDao" ref="userDaoDB"/>
     </bean>
 
     <bean id="userService" class="by.epam.training.service.UserServiceImpl">
@@ -85,6 +85,8 @@
 
     <bean id="userDaoDB" class="by.epam.training.dao.UserDaoDBImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="auditoriumDao" ref="auditoriumDaoProperties"/>
+        <property name="eventDao" ref="eventDaoDB" />
     </bean>
 
     <bean id="eventService" class="by.epam.training.service.EventServiceImpl">
